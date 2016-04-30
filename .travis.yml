@@ -1,7 +1,24 @@
-language: ruby
-rvm:
- - 2.2
- - jruby
- - rbx
-# uncomment this line if your project needs to run something other than `rake`:
-# script: bundle exec rspec spec
+notifications:
+  email: false
+
+language: c
+
+env:
+  global:
+    - "ARTIFACTS_AWS_REGION=us-east-1"
+    - "ARTIFACTS_S3_BUCKET=cantact-builds"
+    - secure: "gol8KyPaZuEpibS+JIrzfWuwaYNtHF0gLR0Lol6PM49KZPnHfAg9P2zMNhESL6ZTmWFwEmhxuntFvOQbGqB55cJbmOv3ZeuYkMw4y+GRwKB3pRAqQTQXOx8uBSCvBw+zmwmbswUA+dlKVQAgGvHxjQRwSfByedZsDaCz/ACd7qs="
+    - secure: "dxFGsRnHyQWQgFBJztagS7OBWSef/p+tn9JhTgIOAZlI86dEe1bI/grkELsq4EV9IdgHFz6ks9+TT9Sb4IFu7+275sBJKAJOZw7Q2nILkUreF2WMwOJQd2ih0uQu3b68ccQxqQhp3s5FrOcUedwqnrM+Jk3+MhpKWO+cVgQ0SqQ="
+
+before_script:
+  - sudo apt-get remove gcc-arm-none-eabi
+  - sudo add-apt-repository ppa:terry.guo/gcc-arm-embedded
+  - sudo apt-get update
+  - sudo apt-get install gcc-arm-none-eabi
+  - curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash
+  - export PATH=$PATH:~/bin/
+
+script: make BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
+
+after_success:
+  "artifacts upload --target-paths=builds/b$TRAVIS_BUILD_NUMBER build/CANtact*"
