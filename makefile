@@ -56,7 +56,7 @@ OPTIMIZE_FOR      =
 DEBUG_LEVEL       = 
 OPTIM_LEVEL       = 
 LINKER_SCRIPT     = ./cortex-m3.ld
-PROJECT_OBJECTS   = main.o startup_ARMCM3.o system_LPC17xx.o
+PROJECT_OBJECTS   = main.o startup_ARMCM3.o system_LPC17xx.o unity.o
 PROJECT_INC_PATHS = -I.
 PROJECT_LIB_PATHS = -L.
 PROJECT_LIBRARIES =
@@ -94,7 +94,7 @@ else
     CC_OPTIM_FLAGS = 
 endif
 
-INCLUDE_PATHS = $(PROJECT_INC_LIB) $(SYS_INC_PATHS)
+INCLUDE_PATHS = $(PROJECT_INC_LIB) $(SYS_INC_PATHS) $(PROJECT_INC_PATHS)
 LIBRARY_PATHS = $(PROJECT_LIB_LIB) $(SYS_LIB_PATHS)
 CC_FLAGS = $(MCU_CC_FLAGS) -c $(CC_OPTIM_FLAGS) $(CC_DEBUG_FLAGS) -fno-common -fmessage-length=0 -Wall -fno-exceptions -ffunction-sections -fdata-sections 
 LD_FLAGS = $(MCU_CC_FLAGS) -Wl,--gc-sections $(SYS_LD_FLAGS) -Wl,-Map=$(PROJECT).map 
@@ -123,10 +123,11 @@ clean:
 
 $(BUILD_TARGET).elf: $(PROJECT_OBJECTS) $(SYS_OBJECTS)
 	$(LD) $(LD_FLAGS) -T$(LINKER_SCRIPT) $(LIBRARY_PATHS) -o $@ $^ $(PROJECT_LIBRARIES) $(SYS_LIBRARIES) $(PROJECT_LIBRARIES) $(SYS_LIBRARIES)
-	@echo "Build ${BUILD_NUMBER} SUCCESS"
 
 
 $(BUILD_TARGET).bin: $(BUILD_TARGET).elf
 	$(OBJCOPY) -O binary $< $@
-
+	@echo ""
+	@echo "Build ${BUILD_NUMBER} SUCCESS"
+	@echo ""
 	
