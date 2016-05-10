@@ -1,0 +1,4 @@
+SRC_FILES += HAL.c
+
+SUB_MODULES += CPU
+SUB_MODULES += Board
