@@ -50,17 +50,17 @@ void tearDown(void)
 }
 
 /***************************** TEST FUNCTIONS *******************************/
-void test_Startup(void)
+void test_BeforeCPUInit(void)
 {
 	//All of these should pass
-	TEST_ASSERT_EQUAL(0, cpu_module_inited);
+	TEST_ASSERT_EQUAL(0, cpu_module_initialized);
 }
 
 
-void test_Startup2(void)
+void test_AfterCPUInit(void)
 {
 	cpu_init();
 
 	//All of these should pass
-	TEST_ASSERT_EQUAL(1, cpu_module_inited);
+	TEST_ASSERT_EQUAL(1, cpu_module_initialized);
 }

@@ -1,11 +1,11 @@
 
 #include "postypes.h"
 
-static int cpu_module_inited = 0;
+static int cpu_module_initialized = 0;
 
 int cpu_init(void)
 {
 	//printf("CPU Inited !\n");
-	cpu_module_inited = 1;
+	cpu_module_initialized = 1;
 	return 0;
 }

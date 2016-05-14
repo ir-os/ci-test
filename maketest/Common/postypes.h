@@ -18,13 +18,14 @@
  *
  ******************************************************************************/
 
-#ifndef __MODULE_NAME_H
-#define __MODULE_NAME_H
+#ifndef __POS_TYPES_H
+#define __POS_TYPES_H
 
 /********************************* INCLUDES ***********************************/
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 
 /***************************** MACRO DEFINITIONS ******************************/
 
@@ -56,4 +57,4 @@
 
 /*************************** FUNCTION DEFINITIONS *****************************/
 
-#endif	/* __MODULE_NAME_H */
+#endif	/* __POS_TYPES_H */
