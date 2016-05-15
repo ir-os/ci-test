@@ -23,7 +23,7 @@
 ################################################################################
 
 # Path of IR-OS Root
-ROOT_PATH = ../..
+ROOT_PATH = .
 
 #
 # Get Environment Info for Unittest Build
