@@ -1,0 +1,1 @@
+TEST_TARGET_NAME=board
