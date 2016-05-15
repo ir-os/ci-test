@@ -3,7 +3,7 @@ ifndef PROJECT
 $(error Please select a project. (Example make PROJECT=<Projects_Name> ) )
 endif
 
-ROOT_PATH = ../..
+ROOT_PATH = .
 
 PROJECT_MAKE_FILE = $(ROOT_PATH)/Projects/$(PROJECT)/project.mk
 
@@ -12,10 +12,6 @@ $(error Invalid Project! Project does not exist in "Projects" folders : $(PROJEC
 endif 
 
 include $(PROJECT_MAKE_FILE)
-
-ifndef PROJECT_NAME
-$(error Project name 'PROJECT_NAME' is not defined. Please define it in your project.mk  )
-endif
 
 
 #
@@ -43,8 +39,8 @@ CFLAGS += \
 #$(INC_PATHS) \
 	
 
-$(PROJECT_NAME):
-	@echo Compiling $(PROJECT_NAME)
+$(PROJECT):
+	@echo $(PROJECT) Compiling...
 
 #      : $(SRC_FILES)
 #	@echo $(SRC_FILES)
