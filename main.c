@@ -17,7 +17,7 @@ int delay(int count)
 
 int main()
 {
-	delay(1000000);
+	delay(2000000);
 	return 0;
 }
 
